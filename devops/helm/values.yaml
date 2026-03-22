@@ -15,7 +15,7 @@ backend:
     type: ClusterIP
     port: 8081
   database:
-    url: "jdbc:postgresql://razz-db-therazz007-878c.b.aivencloud.com:22917/defaultdb?sslmode=require"
+    url: "jdbc:postgresql://dev-db:5432/taskdb?sslmode=require"
   jwt:
     secret: "dev_jwt_secret_key_123"
     expirationMs: "86400000"
