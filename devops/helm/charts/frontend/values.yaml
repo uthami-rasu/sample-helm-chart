@@ -1,0 +1,18 @@
+# Default values for frontend subchart
+image:
+  repository: therazz28/helm-frontend
+  tag: latest
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  host: demo.helm.local
+  tls: []
+
+backendUrl: "http://api-demo.helm.local/api"

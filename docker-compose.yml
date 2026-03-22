@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  backend:
+    image: therazz28/helm-backend:latest
+    build:
+      context: ./backend
+    container_name: helm-backend
+    ports:
+      - "8082:8082"
+    environment:
+      - DB_URL=${DB_URL}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRATION_MS=${JWT_EXPIRATION_MS}
+      - SERVER_PORT=8081
+    restart: unless-stopped
+
+  frontend:
+    image: therazz28/helm-frontend:latest
+    build:
+      context: ./frontend
+      args:
+        - BACKEND_URL=${BACKEND_URL}
+    container_name: helm-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    environment:
+      - BACKEND_HOST=${BACKEND_HOST}
+      - BACKEND_PROTOCOL=${BACKEND_PROTOCOL}
+      - BACKEND_URL=${BACKEND_URL:-/api}
+    restart: unless-stopped

@@ -1,0 +1,47 @@
+# Global values for the entire application
+global:
+  domain: helm.local
+  imagePullSecrets:
+    - name: regcred
+
+# Backend specific values
+backend:
+  enabled: true
+  image:
+    repository: therazz28/helm-backend
+    tag: latest
+    pullPolicy: Always
+  service:
+    type: ClusterIP
+    port: 8081
+  database:
+    url: "jdbc:postgresql://razz-db-therazz007-878c.b.aivencloud.com:22917/defaultdb?sslmode=require"
+  jwt:
+    secret: "dev_jwt_secret_key_123"
+    expirationMs: "86400000"
+  ingress:
+    enabled: true
+    host: api-dev.helm.local
+    tls:
+      - secretName: helm-tls-dev
+        hosts:
+          - api-dev.helm.local
+
+# Frontend specific values
+frontend:
+  enabled: true
+  image:
+    repository: therazz28/helm-frontend
+    tag: latest
+    pullPolicy: Always
+  service:
+    type: ClusterIP
+    port: 80
+  backendUrl: "http://api-dev.helm.local/api"
+  ingress:
+    enabled: true
+    host: dev.helm.local
+    tls:
+      - secretName: helm-tls-dev
+        hosts:
+          - dev.helm.local

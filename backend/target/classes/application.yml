@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/helmdb}
+    driver-class-name: org.postgresql.Driver
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:}
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+helm:
+  app:
+    jwtSecret: ${JWT_SECRET:softqa_very_secret_key_for_helm_application_2026}
+    jwtExpirationMs: ${JWT_EXPIRATION_MS:86400000}
+
+server:
+  port: ${SERVER_PORT:8082}

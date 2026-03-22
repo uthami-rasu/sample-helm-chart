@@ -1,0 +1,25 @@
+# Default values for backend subchart
+image:
+  repository: therazz28/helm-backend
+  tag: latest
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+
+service:
+  type: ClusterIP
+  port: 8081
+
+ingress:
+  enabled: true
+  host: api-demo.helm.local
+  tls: []
+
+database:
+  url: ""
+  username: ""
+  password: ""
+
+jwt:
+  secret: ""
+  expirationMs: "86400000"
