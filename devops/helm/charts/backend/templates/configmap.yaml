@@ -6,4 +6,5 @@ metadata:
     {{- include "backend.labels" . | nindent 4 }}
 data:
   DB_URL: {{ .Values.database.url | quote }}
+  DB_USERNAME: {{ .Values.database.username | quote }}
   JWT_EXPIRATION_MS: {{ .Values.jwt.expirationMs | quote }}

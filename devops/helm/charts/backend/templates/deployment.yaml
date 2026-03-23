@@ -48,3 +48,15 @@ spec:
                   key: JWT_EXPIRATION_MS
             - name: SERVER_PORT
               value: {{ .Values.service.port | quote }}
+            
+            - name: DB_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "backend.fullname" . }}-config
+                  key: DB_USERNAME
+
+            - name: DB_PASSWORD   
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "backend.fullname" . }}-secrets
+                  key: DB_PASSWORD

@@ -16,6 +16,8 @@ backend:
     port: 8081
   database:
     url: "jdbc:postgresql://dev-db:5432/taskdb?sslmode=require"
+    username: "postgres"
+    password: "postgres"
   jwt:
     secret: "dev_jwt_secret_key_123"
     expirationMs: "86400000"
